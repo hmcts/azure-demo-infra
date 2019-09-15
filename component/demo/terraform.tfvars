@@ -1,0 +1,13 @@
+env                           = "demodata"
+subscription                  = "demodata"
+bulk_scan_resource_group_name = "bulk-scan-demo-rg"
+bulk_scan_external_hostname   = "bulk-scanning.demo.platform.hmcts.net"
+wildcard_cert_name            = "star-demo"
+
+core_infra_vnet_address_space = "10.11.64.0/23"
+palo_mgmt_address_prefix      = "10.11.64.0/26"
+palo_trusted_address_prefix   = "10.11.64.64/26"
+palo_untrusted_address_prefix = "10.11.64.128/26"
+api_mgmt_address_prefix       = "10.11.65.0/26"
+appgw_address_prefix          = "10.11.64.192/26"
+bastion_address_prefix        = "10.11.65.64/28"
