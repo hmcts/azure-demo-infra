@@ -1,0 +1,6 @@
+.terraform/
+tfplan
+*.iml
+.idea/
+
+terraform.tfstate*
