@@ -6,7 +6,7 @@ trigger:
 variables:
   serviceConnection: azurerm-demodata
   keyvaultName: cftappsdata-demo
-  terraformVersion: 0.12.15
+  terraformVersion: 0.12.16
   agentPool: 'Ubuntu-18.04'
 
 stages:
