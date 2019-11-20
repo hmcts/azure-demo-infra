@@ -6,7 +6,7 @@ locals {
 }
 
 module "ccpay-payments-product" {
-  source = "git@github.com:hmcts/cnp-module-api-mgmt-product?ref=master"
+  source = "github.com/hmcts/cnp-module-api-mgmt-product?ref=master"
 
   api_mgmt_name         = "core-api-mgmt-demodata"
   api_mgmt_rg           = "core-infra-demodata-rg"
@@ -18,7 +18,7 @@ module "ccpay-payments-product" {
 }
 
 module "ccpay-payments-api" {
-  source = "git@github.com:hmcts/cnp-module-api-mgmt-api?ref=master"
+  source = "github.com/hmcts/cnp-module-api-mgmt-api?ref=master"
 
   api_mgmt_name = "core-api-mgmt-demodata"
   api_mgmt_rg   = "core-infra-demodata-rg"
@@ -45,7 +45,7 @@ data "template_file" "payments_policy_template" {
 }
 
 module "ccpay-payments-policy" {
-  source = "git@github.com:hmcts/cnp-module-api-mgmt-api-policy?ref=master"
+  source = "github.com/hmcts/cnp-module-api-mgmt-api-policy?ref=master"
 
   api_mgmt_name = "core-api-mgmt-demodata"
   api_mgmt_rg   = "core-infra-demodata-rg"
