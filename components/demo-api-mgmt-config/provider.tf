@@ -5,3 +5,7 @@ provider "azurerm" {
 provider "template" {
   version = "=2.1"
 }
+
+terraform {
+  backend "azurerm" {}
+}
