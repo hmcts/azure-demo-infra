@@ -21,7 +21,7 @@ jobs:
               inputs:
                 command: 'init'
                 backendType: 'azurerm'
-                backendServiceArm: 'dcd-cftapps-${{ parameters.environment }}'
+                backendServiceArm: '${{ parameters.serviceConnectionName }}'
                 backendAzureRmResourceGroupName: 'core-infra-${{ parameters.environment }}-rg'
                 backendAzureRmStorageAccountName: 'cftappsdatademo'
                 backendAzureRmContainerName: 'tfstate'
