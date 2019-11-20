@@ -10,7 +10,7 @@ steps:
       backendAzureRmStorageAccountName: 'cftappsdatademo'
       backendAzureRmContainerName: 'tfstate'
       backendAzureRmKey: '${{ parameters.resource_key }}/${{ parameters.environment }}.tfstate'
-     # workingDirectory: '$(System.DefaultWorkingDirectory)/components/${{ parameters.component }}'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/components/${{ parameters.component }}'
   - task: TerraformCLI@0
     displayName: Plan - ${{ parameters.environment }} - ${{ parameters.component }}
     inputs:

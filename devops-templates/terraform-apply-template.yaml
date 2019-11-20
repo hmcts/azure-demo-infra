@@ -17,16 +17,16 @@ jobs:
                 script: 'ls -lash'
                 workingDirectory: '$(Pipeline.Workspace)/drop/components/${{ parameters.component }}'
             - task: TerraformCLI@0
-              displayName: Init
+              displayName: Init - ${{ parameters.environment }} - ${{ parameters.component }}
               inputs:
                 command: 'init'
                 backendType: 'azurerm'
-                backendServiceArm: 'DCD-CFTAPPSDATA-DEMO'
-                backendAzureRmResourceGroupName: 'core-infra-demodata-rg'
+                backendServiceArm: '${{ parameters.serviceConnectionName }}'
+                backendAzureRmResourceGroupName: 'core-infra-${{ parameters.environment }}-rg'
                 backendAzureRmStorageAccountName: 'cftappsdatademo'
                 backendAzureRmContainerName: 'tfstate'
-                backendAzureRmKey: 'api-mgmt.tfstate'
-               # workingDirectory: '$(Pipeline.Workspace)/drop/components/demo-api-mgmt-config'
+                backendAzureRmKey: '${{ parameters.resource_key }}/${{ parameters.environment }}.tfstate'
+                workingDirectory: '$(Pipeline.Workspace)/drop/components/${{ parameters.component }}'
             - task: TerraformInstaller@0
               inputs:
                 terraformVersion: ${{ parameters.terraformVersion }}
