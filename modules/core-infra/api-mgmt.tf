@@ -1,5 +1,5 @@
 module "api-mgmt" {
-  source        = "git@github.com:hmcts/cnp-module-api-mgmt?ref=master"
+  source        = "github.com/hmcts/cnp-module-api-mgmt?ref=master"
   location      = var.location
   env           = var.env
   vnet_rg_name  = var.resource_group_name

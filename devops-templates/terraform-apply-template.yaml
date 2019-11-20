@@ -21,9 +21,9 @@ jobs:
               inputs:
                 command: 'init'
                 backendType: 'azurerm'
-                backendServiceArm: 'dcd-cftapps-${{ parameters.environment }}'
+                backendServiceArm: '${{ parameters.serviceConnectionName }}'
                 backendAzureRmResourceGroupName: 'core-infra-${{ parameters.environment }}-rg'
-                backendAzureRmStorageAccountName: 'cftapps${{ parameters.environment }}'
+                backendAzureRmStorageAccountName: 'cftappsdatademo'
                 backendAzureRmContainerName: 'tfstate'
                 backendAzureRmKey: '${{ parameters.resource_key }}/${{ parameters.environment }}.tfstate'
                 workingDirectory: '$(Pipeline.Workspace)/drop/components/${{ parameters.component }}'

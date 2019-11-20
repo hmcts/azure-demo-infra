@@ -1,12 +1,12 @@
 locals {
   bulkscanning_api_gateway_certificate_thumbprints = ["2A1EE53E044632145C89FE428128080353127DF6", "5865F09316FEDD32D870F7F07F06D2B5E0D4782D"]
-  bulkscanning_thumbprints_in_quotes               = "${formatlist("&quot;%s&quot;", local.bulkscanning_api_gateway_certificate_thumbprints)}"
+  bulkscanning_thumbprints_in_quotes               = formatlist("&quot;%s&quot;", local.bulkscanning_api_gateway_certificate_thumbprints)
 
-  bulkscanning_thumbprints_in_quotes_str = "${join(",", local.bulkscanning_thumbprints_in_quotes)}"
+  bulkscanning_thumbprints_in_quotes_str = join(",", local.bulkscanning_thumbprints_in_quotes)
 }
 
 module "bulk_scan_product" {
-  source = "../cnp-module-api-mgmt-product"
+  source = "github.com/hmcts/cnp-module-api-mgmt-product?ref=master"
 
   api_mgmt_name = "core-api-mgmt-demodata"
   api_mgmt_rg   = "core-infra-demodata-rg"
@@ -15,13 +15,13 @@ module "bulk_scan_product" {
 }
 
 module "bulk_scan_api" {
-  source = "../cnp-module-api-mgmt-api"
+  source = "github.com/hmcts/cnp-module-api-mgmt-api?ref=master"
 
   api_mgmt_name = "core-api-mgmt-demodata"
   api_mgmt_rg   = "core-infra-demodata-rg"
 
   revision     = "1"
-  product_id   = "${module.bulk_scan_product.product_id}"
+  product_id   = module.bulk_scan_product.product_id
   name         = "bulk-scan-api"
   display_name = "bulk-scan-api"
   path         = "bulk-scan"
@@ -30,19 +30,19 @@ module "bulk_scan_api" {
 }
 
 data "template_file" "bulk_scan_api_policy_template" {
-  template = "${file("${path.module}/templates/bulk-scan-api-policy.xml")}"
+  template = file("${path.module}/templates/bulk-scan-api-policy.xml")
 
   vars = {
-    allowed_certificate_thumbprints = "${local.bulkscanning_thumbprints_in_quotes_str}"
+    allowed_certificate_thumbprints = local.bulkscanning_thumbprints_in_quotes_str
   }
 }
 
 module "bulk_scan_api_policy" {
-  source = "../cnp-module-api-mgmt-api-policy"
+  source = "github.com/hmcts/cnp-module-api-mgmt-api-policy?ref=master"
 
   api_mgmt_name = "core-api-mgmt-demodata"
   api_mgmt_rg   = "core-infra-demodata-rg"
 
-  api_name               = "${module.bulk_scan_api.name}"
-  api_policy_xml_content = "${data.template_file.bulk_scan_api_policy_template.rendered}"
+  api_name               = module.bulk_scan_api.name
+  api_policy_xml_content = data.template_file.bulk_scan_api_policy_template.rendered
 }

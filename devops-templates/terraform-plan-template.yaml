@@ -7,7 +7,7 @@ steps:
       backendType: 'azurerm'
       backendServiceArm: '${{ parameters.serviceConnectionName }}'
       backendAzureRmResourceGroupName: 'core-infra-${{ parameters.environment }}-rg'
-      backendAzureRmStorageAccountName: 'cftapps${{ parameters.environment }}'
+      backendAzureRmStorageAccountName: 'cftappsdatademo'
       backendAzureRmContainerName: 'tfstate'
       backendAzureRmKey: '${{ parameters.resource_key }}/${{ parameters.environment }}.tfstate'
       workingDirectory: '$(System.DefaultWorkingDirectory)/components/${{ parameters.component }}'
