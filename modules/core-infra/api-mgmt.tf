@@ -3,5 +3,7 @@ module "api-mgmt" {
   location      = var.location
   env           = var.env
   vnet_rg_name  = var.resource_group_name
+  vnet_name     = var.vnet_name
+  source_range  = var.address_space
   api_subnet_id = azurerm_subnet.api-mgmt.id
 }
