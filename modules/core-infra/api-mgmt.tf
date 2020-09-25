@@ -1,5 +1,5 @@
 module "api-mgmt" {
-  source        = "github.com/hmcts/cnp-module-api-mgmt?ref=u878-api_mgmt_tf"
+  source        = "github.com/hmcts/cnp-module-api-mgmt?ref=master"
   location      = var.location
   env           = var.env
   vnet_rg_name  = var.resource_group_name
